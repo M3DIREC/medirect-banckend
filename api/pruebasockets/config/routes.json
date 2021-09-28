@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/pruebasockets",
+      "handler": "pruebasockets.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/pruebasockets/count",
+      "handler": "pruebasockets.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/pruebasockets/:id",
+      "handler": "pruebasockets.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/pruebasockets",
+      "handler": "pruebasockets.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/pruebasockets/:id",
+      "handler": "pruebasockets.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/pruebasockets/:id",
+      "handler": "pruebasockets.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
