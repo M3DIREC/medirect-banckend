@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/instituciones/distancia/:lat/:lng/:km",
+      "handler": "instituciones.distancia",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
