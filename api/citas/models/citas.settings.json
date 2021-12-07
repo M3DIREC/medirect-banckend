@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "citas",
+  "info": {
+    "name": "citas",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "consulta": {
+      "model": "consultas",
+      "via": "citas"
+    },
+    "prestamista": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "citas"
+    },
+    "institucion": {
+      "model": "instituciones",
+      "via": "citas"
+    },
+    "citaDisponible": {
+      "type": "boolean",
+      "default": true
+    },
+    "citaFecha": {
+      "type": "date"
+    },
+    "citaHora": {
+      "type": "time"
+    },
+    "paciente": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "citasPaciente"
+    },
+    "detalleservicio": {
+      "model": "detalleservicios",
+      "via": "citas"
+    },
+    "citaCosto": {
+      "type": "float",
+      "default": 0
+    },
+    "citaObservaciones": {
+      "type": "text",
+      "default": "observaciones"
+    }
+  }
+}

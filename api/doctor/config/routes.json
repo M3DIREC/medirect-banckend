@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/doctor",
+      "handler": "doctor.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/doctor",
+      "handler": "doctor.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/doctor",
+      "handler": "doctor.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

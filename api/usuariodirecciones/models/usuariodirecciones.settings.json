@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "usuariodirecciones",
+  "info": {
+    "name": "usuariodirecciones",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "direccion": {
+      "type": "string"
+    },
+    "colonia": {
+      "type": "string"
+    },
+    "ciudad": {
+      "type": "string"
+    },
+    "estado": {
+      "type": "string"
+    },
+    "cruces": {
+      "type": "text"
+    },
+    "referencia": {
+      "type": "text"
+    },
+    "longitud": {
+      "type": "float",
+      "default": 0
+    },
+    "latitud": {
+      "type": "float",
+      "default": 0
+    },
+    "codigoPostal": {
+      "type": "string"
+    },
+    "usuario": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "usuariodireccion"
+    }
+  }
+}

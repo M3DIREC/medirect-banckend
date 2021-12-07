@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/pruebasockets",
-      "handler": "pruebasockets.find",
+      "path": "/citas",
+      "handler": "citas.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/pruebasockets/count",
-      "handler": "pruebasockets.count",
+      "path": "/citas/count",
+      "handler": "citas.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/pruebasockets/:id",
-      "handler": "pruebasockets.findOne",
+      "path": "/citas/:id",
+      "handler": "citas.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/pruebasockets",
-      "handler": "pruebasockets.create",
+      "path": "/citas",
+      "handler": "citas.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/pruebasockets/:id",
-      "handler": "pruebasockets.update",
+      "path": "/citas/:id",
+      "handler": "citas.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/pruebasockets/:id",
-      "handler": "pruebasockets.delete",
+      "path": "/citas/:id",
+      "handler": "citas.delete",
       "config": {
         "policies": []
       }

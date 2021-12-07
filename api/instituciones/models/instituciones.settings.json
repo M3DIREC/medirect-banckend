@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "instituciones",
+  "info": {
+    "name": "instituciones",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "institucionNombre": {
+      "type": "text",
+      "required": true
+    },
+    "usuarios": {
+      "via": "instituciones",
+      "plugin": "users-permissions",
+      "collection": "user",
+      "dominant": true
+    },
+    "servicios": {
+      "via": "instituciones",
+      "collection": "servicios"
+    },
+    "detalleservicios": {
+      "via": "institucion",
+      "collection": "detalleservicios"
+    },
+    "consultas": {
+      "via": "institucion",
+      "collection": "consultas"
+    },
+    "imagen": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "citas": {
+      "via": "institucion",
+      "collection": "citas"
+    },
+    "instituciondireccion": {
+      "via": "institucion",
+      "model": "insituciondirecciones"
+    }
+  }
+}

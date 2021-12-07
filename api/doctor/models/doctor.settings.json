@@ -1,0 +1,34 @@
+{
+  "kind": "singleType",
+  "collectionName": "doctors",
+  "info": {
+    "name": "Doctor",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Cirugano": {
+      "type": "string"
+    },
+    "Partero": {
+      "type": "string"
+    },
+    "Pediatra": {
+      "type": "string"
+    },
+    "enfermero": {
+      "type": "string"
+    },
+    "Cardiologo": {
+      "type": "string"
+    },
+    "Ginecologo": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "insituciondirecciones",
+  "info": {
+    "name": "instituciondirecciones",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "direccion": {
+      "type": "string"
+    },
+    "colonia": {
+      "type": "string"
+    },
+    "ciudad": {
+      "type": "string"
+    },
+    "estado": {
+      "type": "string"
+    },
+    "cruces": {
+      "type": "text"
+    },
+    "referencia": {
+      "type": "text"
+    },
+    "latitud": {
+      "type": "float",
+      "default": 0
+    },
+    "longitud": {
+      "default": 0,
+      "type": "float"
+    },
+    "codigoPostal": {
+      "type": "string"
+    },
+    "institucion": {
+      "model": "instituciones",
+      "via": "instituciondireccion"
+    }
+  }
+}

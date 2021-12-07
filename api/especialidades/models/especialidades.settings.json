@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "especialidades",
+  "info": {
+    "name": "especialidades",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "especialidad": {
+      "type": "text"
+    },
+    "usuarios": {
+      "via": "especialidades",
+      "plugin": "users-permissions",
+      "columnName": "epecialidadUsuario",
+      "collection": "user",
+      "dominant": true
+    }
+  }
+}

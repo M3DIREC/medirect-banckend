@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "detalleservicios",
+  "info": {
+    "name": "detalleservicios",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "detalleServicio": {
+      "type": "string",
+      "required": true
+    },
+    "descripcionDetalleServicio": {
+      "type": "text",
+      "required": true
+    },
+    "servicio": {
+      "via": "detalleservicios",
+      "model": "servicios"
+    },
+    "institucion": {
+      "via": "detalleservicios",
+      "model": "instituciones"
+    },
+    "prestamistas": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "detalleservicios",
+      "dominant": true
+    },
+    "consultas": {
+      "via": "detalleservicios",
+      "collection": "consultas"
+    },
+    "citas": {
+      "via": "detalleservicio",
+      "collection": "citas"
+    }
+  }
+}

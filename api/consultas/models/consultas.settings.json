@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "consultas",
+  "info": {
+    "name": "consultas",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "prestamista": {
+      "via": "consultaspres",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "paciente": {
+      "via": "consultas",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "institucion": {
+      "via": "consultas",
+      "model": "instituciones"
+    },
+    "consultaPrecio": {
+      "type": "float",
+      "default": 0
+    },
+    "consultaComision": {
+      "type": "float",
+      "default": 0
+    },
+    "consultaTotal": {
+      "type": "float",
+      "default": 0
+    },
+    "consultaTerminada": {
+      "type": "boolean",
+      "default": false
+    },
+    "consultaCalificacion": {
+      "type": "decimal",
+      "default": 1
+    },
+    "consultaComentarios": {
+      "type": "text",
+      "default": "NINGUN COMENTARIO"
+    },
+    "conultaTerminada": {
+      "type": "datetime"
+    },
+    "detalleservicios": {
+      "collection": "detalleservicios",
+      "via": "consultas",
+      "dominant": true
+    },
+    "citas": {
+      "via": "consulta",
+      "collection": "citas"
+    }
+  }
+}
