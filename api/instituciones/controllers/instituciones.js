@@ -8,7 +8,7 @@
 module.exports = {
   async distancia(ctx) {
     let entities = await strapi.connections.default.raw(`
-      select  
+      select
       instituciones.id as idInsitucion,
       insituciondirecciones.id as idDireccion,
       institucionNombre as institucion,
@@ -18,13 +18,22 @@ module.exports = {
       estado,
       latitud,
       longitud,
+      upload_file.url as imagen,
       codigoPostal,
       CALCULATEDISCOORDS(${ctx.params.lat}, ${ctx.params.lng}, latitud, longitud) as distancia
       from instituciones
-      inner join 
+      inner join
       insituciondirecciones
       on instituciones.instituciondireccion = insituciondirecciones.id
+      inner join
+      upload_file_morph
+      on upload_file_morph.related_id = instituciones.id
+      inner join
+      upload_file
+      on upload_file_morph.upload_file_id = upload_file.id
       where CALCULATEDISCOORDS(${ctx.params.lat}, ${ctx.params.lng}, latitud, longitud) < ${ctx.params.km}
+      and
+      upload_file_morph.related_type = 'instituciones'
       ORDER BY distancia asc;
     `);
 
