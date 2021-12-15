@@ -50,7 +50,7 @@
     },
     {
       "method": "GET",
-      "path": "/citas/distancia/:lat/:lng/:km",
+      "path": "/citas/distancia/:lat/:lng/:km/:servicio/:fecha",
       "handler": "citas.distancia",
       "config": {
         "policies": []

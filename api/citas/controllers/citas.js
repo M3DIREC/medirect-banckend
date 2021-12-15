@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
@@ -6,82 +6,87 @@
  */
 
 module.exports = {
-
   async distancia(ctx) {
-
-    let entities = await strapi.connections.default.raw(`
-      select
-      instituciones.id as idInsitucion,
-      insituciondirecciones.id as idDireccion,
-      institucionNombre as institucion,
-      upload_file.url as imagen,
+    let citasDB = await strapi.connections.default.raw(`
+      select 
       citas.id as idCita,
-      citas.citaFecha as fecha,
-      presta.username,
-      imgpre.url as imagenPrestamista,
-      CALCULATEDISCOORDS(${ctx.params.lat}, ${ctx.params.lng}, latitud, longitud) as distancia
-      from instituciones
+      instituciones.id as idInstitucion,
+      instituciones.institucionNombre as institucionNombre,
+      citas.citaFecha as citaFecha,
+      doctor.id as idDoctor,
+      doctor.username as doctorNombre,
+      fileDoctor.url as doctorImagen
+      from citas
+      LEFT join
+      instituciones
+      on instituciones.id = citas.institucion
       inner join
-      insituciondirecciones
-      on instituciones.instituciondireccion = insituciondirecciones.id
+      insituciondirecciones as direccion
+      on direccion.institucion = citas.institucion
       inner join
-      upload_file_morph
-      on upload_file_morph.related_id = instituciones.id
+      ${"`users-permissions_user`"} as doctor
+      on doctor.id = citas.prestamista
       inner join
-      upload_file
-      on upload_file_morph.upload_file_id = upload_file.id
+      upload_file_morph as imagenRegistroDoctor
+      on imagenRegistroDoctor.related_id = doctor.id
       inner join
-      citas
-      on citas.institucion = instituciones.id
-      inner join
-      ${"`users-permissions_user`"} as presta
-      on citas.prestamista = presta.id
-      inner join
-      upload_file_morph as imgpresta
-      on imgpresta.related_id = presta.id
-      inner join
-      upload_file as imgpre
-      on imgpresta.upload_file_id = imgpre.id
-      where CALCULATEDISCOORDS(${ctx.params.lat}, ${ctx.params.lng}, latitud, longitud) < ${ctx.params.km}
+      upload_file as fileDoctor
+      on imagenRegistroDoctor.upload_file_id = fileDoctor.id
+      where CALCULATEDISCOORDS(${ctx.params.lat}, ${
+      ctx.params.lng
+    }, latitud, longitud) < ${ctx.params.km}      
       and
-      upload_file_morph.related_type = 'instituciones'
+      citas.citaDisponible = true
       and
-      imgpresta.related_type = 'users-permissions_user'
+      imagenRegistroDoctor.related_type = 'users-permissions_user'
+      and 
+      citas.servicio = ${ctx.params.servicio}
       and
-      presta.role = 4
-      ORDER BY distancia asc;
-    `)
+      citaFecha > '${ctx.params.fecha}';
+    `);
 
-    // let entities = await strapi.connections.default.raw(`
-    //  select
-    //  instituciones.id as idInsitucion,
-    //  insituciondirecciones.id as idDireccion,
-    //  institucionNombre as institucion,
-    //  direccion,
-    //  colonia,
-    //  ciudad,
-    //  estado,
-    //  latitud,
-    //  longitud,
-    //  upload_file.url as imagen,
-    //  codigoPostal,
-    //  CALCULATEDISCOORDS(${ctx.params.lat}, ${ctx.params.lng}, latitud, longitud) as distancia
-    //  from instituciones
-    //  inner join
-    //  insituciondirecciones
-    //  on instituciones.instituciondireccion = insituciondirecciones.id
-    //  inner join
-    //  upload_file_morph
-    //  on upload_file_morph.related_id = instituciones.id
-    //  inner join
-    //  upload_file
-    //  on upload_file_morph.upload_file_id = upload_file.id
-    //  where CALCULATEDISCOORDS(${ctx.params.lat}, ${ctx.params.lng}, latitud, longitud) < ${ctx.params.km}
-    //  and
-    //  upload_file_morph.related_type = 'instituciones'
-    //  ORDER BY distancia asc;
-    //`);
+    let institucionesDB = await strapi.connections.default.raw(`
+     select
+     instituciones.id as idInsitucion,
+     insituciondirecciones.id as idDireccion,
+     institucionNombre as institucion,
+     direccion,
+     colonia,
+     ciudad,
+     estado,
+     latitud,
+     longitud,
+     upload_file.url as imagen,
+     codigoPostal,
+     CALCULATEDISCOORDS(${ctx.params.lat}, ${ctx.params.lng}, latitud, longitud) as distancia
+     from instituciones
+     inner join
+     insituciondirecciones
+     on instituciones.instituciondireccion = insituciondirecciones.id
+     inner join
+     upload_file_morph
+     on upload_file_morph.related_id = instituciones.id
+     inner join
+     upload_file
+     on upload_file_morph.upload_file_id = upload_file.id
+     where CALCULATEDISCOORDS(${ctx.params.lat}, ${ctx.params.lng}, latitud, longitud) < ${ctx.params.km}
+     and
+     upload_file_morph.related_type = 'instituciones'
+     ORDER BY distancia asc;
+    `);
 
-    return entities[0];
+    let citas = citasDB[0];
+    let instituciones = institucionesDB[0];
+    let institucionesCitas = instituciones.map((institucion) => {
+      let cita = citas.filter(
+        (cita) => cita.idInstitucion === institucion.idInsitucion
+      );
+
+      institucion.citas = cita;
+
+      return institucion;
+    });
+
+    return institucionesCitas;
   },
 };
