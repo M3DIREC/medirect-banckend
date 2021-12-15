@@ -104,6 +104,9 @@
     "usuariodireccion": {
       "via": "usuario",
       "model": "usuariodirecciones"
+    },
+    "telefono": {
+      "type": "string"
     }
   }
 }

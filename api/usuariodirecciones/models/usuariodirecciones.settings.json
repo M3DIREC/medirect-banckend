@@ -42,9 +42,9 @@
       "type": "string"
     },
     "usuario": {
+      "via": "usuariodireccion",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "usuariodireccion"
+      "model": "user"
     }
   }
 }

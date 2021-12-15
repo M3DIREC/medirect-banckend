@@ -6,4 +6,5 @@ module.exports = ({ env }) => ({
       secret: env('ADMIN_JWT_SECRET', '69d7b7fc532866721ffc89def2efe3e6'),
     },
   },
+  url: "https://penguin424.me"
 });

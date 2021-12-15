@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/citas/distancia/:lat/:lng/:km",
+      "handler": "citas.distancia",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

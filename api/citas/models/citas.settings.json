@@ -13,13 +13,13 @@
   "pluginOptions": {},
   "attributes": {
     "consulta": {
-      "model": "consultas",
-      "via": "citas"
+      "via": "citas",
+      "model": "consultas"
     },
     "prestamista": {
+      "via": "citas",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "citas"
+      "model": "user"
     },
     "institucion": {
       "model": "instituciones",
@@ -30,15 +30,12 @@
       "default": true
     },
     "citaFecha": {
-      "type": "date"
-    },
-    "citaHora": {
-      "type": "time"
+      "type": "datetime"
     },
     "paciente": {
+      "via": "citasPaciente",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "citasPaciente"
+      "model": "user"
     },
     "detalleservicio": {
       "model": "detalleservicios",
@@ -51,6 +48,10 @@
     "citaObservaciones": {
       "type": "text",
       "default": "observaciones"
+    },
+    "servicio": {
+      "model": "servicios",
+      "via": "citas"
     }
   }
 }

@@ -36,6 +36,10 @@
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
+    },
+    "citas": {
+      "via": "servicio",
+      "collection": "citas"
     }
   }
 }

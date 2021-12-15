@@ -61,6 +61,21 @@
     "citas": {
       "via": "consulta",
       "collection": "citas"
+    },
+    "consultaConfirmada": {
+      "type": "boolean",
+      "default": false
+    },
+    "consultaMetodoDePago": {
+      "type": "enumeration",
+      "enum": [
+        "EFECTIVO",
+        "TARJETA"
+      ],
+      "default": "EFECTIVO"
+    },
+    "consultaPagoReferencia": {
+      "type": "string"
     }
   }
 }

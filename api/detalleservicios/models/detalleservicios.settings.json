@@ -29,9 +29,9 @@
       "model": "instituciones"
     },
     "prestamistas": {
+      "via": "detalleservicios",
       "plugin": "users-permissions",
       "collection": "user",
-      "via": "detalleservicios",
       "dominant": true
     },
     "consultas": {
